@@ -1,14 +1,11 @@
-var express = require('express');
+var express = require('express'),
+    wines = require('./routes/wines');
 
 var app = express();
 
-app.get('/wines', function(req, res) {
-  res.send([{name: 'wine1'}, {name: 'wine2'}]);
-});
+app.get('/wines', wines.findAll);
 
-app.get('/wines/:id', function(req, res) {
-  res.send({id: req.param.id, name: "The Name", description: "description"});
-});
+app.get('/wines/:id', wines.findById);
 
 app.listen(3000);
 
